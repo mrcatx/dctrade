@@ -96,7 +96,7 @@ def get_trade_usdt(type,coin_id,stocks,config):
 def get_tradeable(type,coin_id,config):
     return config.get('%s_switch'%type,False)
 
-def check_trade(coin_id,stocks):
+def check_trade(coin_id,stocks,kline):
     coin_code = coins.get_code(coin_id)
 
     kdj_config = get_conf(coin_id)
@@ -113,11 +113,10 @@ def check_trade(coin_id,stocks):
 
     #取消当前未完成的挂单
     api.cancel_all_orders_by_coin_id(coin_id)
-    #获取K线序列
-    kline = dl.get_kline(coin_id, 15,100)
+    
 
     #设置KD卖出权重，剩余仓位大于0.15时为1，否则为0.7，增加卖出机会
-    kdj_sell_ratio = 1 if stock_remain/stock_limit>0.17 else 0.7
+    kdj_sell_ratio = 1 if stock_limit and stock_remain/stock_limit>0.17 else 0.7
     #获取KDJ序列
     kdj_data = get_kdj(coin_id,kline,sell_ratio=kdj_sell_ratio)
     #获取MA30序列

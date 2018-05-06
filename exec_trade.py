@@ -53,14 +53,16 @@ stocks = api.get_stocks()
 trades = []
 if not stocks:
     print('账户读取错误')
-else:    
+else:
     save_stock_info(stocks)
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     print('check at %s'%now)
     for coin_id,coin_code in coins.g_coins.items():
+        #获取K线序列
+        kline = dc_lib.get_kline(coin_id, 15,100)        
         kdj_config = kdj.get_conf(coin_id)
         trades.extend(api.get_trades(coin_id))
-        trade_action = kdj.check_trade(coin_id,stocks)
+        trade_action = kdj.check_trade(coin_id,stocks,kline)
         if not trade_action:
             continue
         price = trade_action[2]
