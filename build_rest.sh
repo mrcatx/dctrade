@@ -1,12 +1,12 @@
-docker rm -f kdjrest
+docker rm -f dcjrest
 docker run -d -p 5000:5000  \
             -v /dc/dctrade:/code  \
             -i -t  \
             -e "TZ=Asia/Chongqing"  \
-            --name kdjrest kdjrest:base  \
+            --name dcjrest kdjrest:base  \
              /bin/bash
             # python rest/main.py
-docker exec kdjrest python /code/rest/web.py
+docker exec dcjrest python /code/rest/web.py
 
 
 # docker rm -f kdjrest
