@@ -1,13 +1,13 @@
 import sys
-sys.path.append('/code/')
-sys.path.append('/Users/xun/Workspace/Source/python/dctrade/')
+import os
+cur_path = os.path.dirname(os.path.abspath(__file__))
+sys.path.append('%s/../'%cur_path)
 import dc_lib
 import dc_api_lib as api
 from flask import Flask, render_template, request, redirect
 import time
 import logging
 logging.basicConfig(level=logging.DEBUG)
-import os
 import json
 from operator import itemgetter, attrgetter
 from datetime import datetime
