@@ -113,7 +113,6 @@ def check_trade(coin_id,stocks,kline):
 
     #取消当前未完成的挂单
     api.cancel_all_orders_by_coin_id(coin_id)
-    
 
     #设置KD卖出权重，剩余仓位大于0.15时为1，否则为0.7，增加卖出机会
     kdj_sell_ratio = 1 if stock_limit and stock_remain/stock_limit>0.17 else 0.7
@@ -141,7 +140,7 @@ def check_trade(coin_id,stocks,kline):
     if signal == 1:
         #如果还有可用仓位则买入
         if buy_usdt and stock_remain:
-            volume = max(min(buy_usdt/price,stock_remain),1.2)
+            volume = min(buy_usdt/price,stock_remain)
             return('buy',coin_id,price,volume)
     #卖出信号
     elif signal == -1:
