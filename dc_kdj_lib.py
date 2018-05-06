@@ -139,7 +139,7 @@ def check_trade(coin_id,stocks,df,ma30_data=None,kdj_data=None,trade_config=None
     sell_usdt = trade_config.sell_usdt
     stock_limit = trade_config.stock_limit
     stock_remain = trade_config.stock_remain
-    stock = trade_config.buy_usdt
+    stock = trade_config.stock
     kdj_sell_ratio = trade_config.kdj_sell_ratio
 
     # buy_usdt=float(trade_config.get('buy_usdt')),
