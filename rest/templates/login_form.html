@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+  </head>
+
+  <body>
+    <form action="do_login" method="POST">
+      <h1>{{vercode['account']}}</h1>
+      <img src="{{vercode['src']}}"/>
+      <br/>
+      <input type="text" name="vercode"/><br/>
+      <input type="text" name="account" value="{{vercode['account']}}"/><br/>
+      <button type="submit">Login</button>
+    </form>
+  </body>
+</html>

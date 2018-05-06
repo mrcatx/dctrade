@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stock List</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      td{
+        padding: 5px
+      }
+      table {
+        border-collapse: collapse;
+      }
+      table, th, td {
+        border: 1px solid lightgray;
+      }      
+      thead{
+          background: lightcyan
+      }
+    </style>
+  </head>
+
+  <body>
+    <table style="width: 100%;" >
+        <thead>
+            <tr><th>Coin</th><th>Appraisement</th><th>Ratio</th></tr>
+        </thead>
+    {% for stock in stock_data %}
+        <tr><td>{{stock['coin_code']}}</td><td>{{stock['appraisement']}}</td><td>{{stock['ratio']}}%</td></tr>
+    {% endfor %}
+    </table>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trade List</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      td{
+        padding: 5px
+      }
+      table {
+        border-collapse: collapse;
+      }
+      table, th, td {
+        border: 1px solid lightgray;
+      }      
+      thead{
+          background: lightcyan
+      }
+      .sell{
+        background-color: rgb(223, 255, 223)
+      }
+      .buy{
+        background-color: #ffe8e8
+      }
+
+      a {color:rgb(0, 124, 226);}      /* unvisited link */
+      a:visited {color:rgb(0, 124, 226);}   /* visited link */
+    </style>
+  </head>
+
+  <body>
+    <a href="/">Home</a>
+    {% if coin_code %}
+      &nbsp;&nbsp;<a href="trade_list?account={{account}}">Remove Filter "{{coin_code}}"</a>
+    {% endif %}
+    <br/>
+    <table style="width: 100%;" >
+        <thead>
+            <tr><th>Coin</th><th>Price</th><th>Money</th><th>Time</th></tr>
+        </thead>
+    {% for trade in trade_data %}
+        <tr class="{{trade['order_type']}}"><td>
+            <a href="trade_list?account={{account}}&coin_code={{trade['coin_code']}}">{{trade['coin_code']}}</a>
+        </td><td>{{trade['price']}}</td><td>{{trade['money']}}</td><td>{{trade['time']}}</td></tr>
+    {% endfor %}
+    </table>
+  </body>
+</html>

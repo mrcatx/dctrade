@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dragonex Monitor</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      td{
+        padding: 5px
+      }
+      table {
+          border-collapse: collapse;
+      }
+
+      table, th, td {
+          border: 1px solid lightgray;
+      }
+      .summary{
+        /* border: 1px solid red; */
+        background-color: rgb(253, 245, 246);
+        padding: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        color: {{summary['profit_color']}};
+      }
+    </style>
+    <script>
+      window.setTimeout(function(){
+        location.reload();
+      }, 1000*60*5)
+    </script>
+  </head>
+
+  <body>
+    <div class="summary">
+        {{summary['profit_rmb']}}￥&nbsp;&nbsp;{{summary['profit_ratio']}}%
+    </div>
+    {% for account in accounts %}
+      <table style="width: 100%;">
+          <tr><td style="width:35%">Account</td><td>{{account['account']}}</td></tr>
+          <tr><td>Appraisement</td><td style="color: red"><b>{{account['appraisement_usdt']}}U&nbsp;&nbsp;{{account['appraisement_rmb']}}￥</b></td></tr>
+          <tr><td>Float Profit</td><td style="color: {{account['profit_color']}}"><b>{{account['floats']}}U&nbsp;&nbsp;&nbsp;&nbsp;{{account['profit_ratio']}}%</b></td></td></tr>
+          <tr><td>USTD</td><td style="color: blue"><b>{{account['usdt_stock']}}&nbsp;&nbsp;&nbsp;&nbsp;{{account['ratio']}}%</b></td></tr>
+          <tr><td>Login Time</td><td>{{account['login_time']}}</td></tr>
+          <tr><td>Update Time</td><td>{{account['update_time']}}</td></tr>
+          <tr><td>Action</td><td>
+            <a href='login_form?account={{account['account']}}'>Login</a>
+            &nbsp;<a href='stock_list?account={{account['account']}}'>Stock</a>
+            &nbsp;<a href='trade_list?account={{account['account']}}'>Trade</a>
+          </td></tr>
+      </table>
+      <br/>
+    {% endfor %}
+    <div style="text-align: center">
+      <a href="javascript:location.reload()">Reload</a>
+    </div>
+  </body>
+</html>
