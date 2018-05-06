@@ -2,6 +2,9 @@ import dc_lib as dl
 import numpy as np
 import pandas as pd
 import dc_api_lib as api
+import os
+import coins
+cur_path = os.path.dirname(os.path.abspath(__file__))
 
 def get_kdj(coin_id, kline,sell_ratio = 1):
     df = dl.convert_candle_dataframe(kline)
@@ -62,7 +65,7 @@ def get_kdj(coin_id, kline,sell_ratio = 1):
 import json
 
 def get_conf(coin_id):
-    config_set = json.load(open('/code/strategy/kdj/kdj_conf.json','r'))
+    config_set = json.load(open('%s/strategy/kdj/kdj_conf.json'%cur_path,'r'))
     rst = list(filter(lambda x:x['coin_id']==coin_id,config_set))
     if not rst:
         return None
@@ -92,3 +95,65 @@ def get_trade_usdt(type,coin_id,stocks,config):
 
 def get_tradeable(type,coin_id,config):
     return config.get('%s_switch'%type,False)
+
+def check_trade(coin_id,stocks):
+    coin_code = coins.get_code(coin_id)
+
+    kdj_config = get_conf(coin_id)
+    #获取买入金额
+    buy_usdt = get_trade_usdt('buy',coin_id,stocks,kdj_config)
+    #获取卖出金额
+    sell_usdt = get_trade_usdt('sell',coin_id,stocks,kdj_config)
+    #获取仓位上限
+    stock_limit = get_stock_limit(coin_id,stocks,kdj_config)
+    #获取仓位余额
+    stock_remain = get_stock_remain(coin_id,stocks,kdj_config)
+    #获取当前仓位
+    stock = api.get_coin_stock(coin_id,stocks)
+
+    #取消当前未完成的挂单
+    api.cancel_all_orders_by_coin_id(coin_id)
+    #获取K线序列
+    kline = dl.get_kline(coin_id, 15,100)
+
+    #设置KD卖出权重，剩余仓位大于0.15时为1，否则为0.7，增加卖出机会
+    kdj_sell_ratio = 1 if stock_remain/stock_limit>0.17 else 0.7
+    #获取KDJ序列
+    kdj_data = get_kdj(coin_id,kline,sell_ratio=kdj_sell_ratio)
+    #获取MA30序列
+    ma30_data = dl.get_mean(kline,30)
+
+    #获取交易信号集
+    signal_arr = kdj_data['kd_signal']
+    #获取最新信号
+    signal = signal_arr[-1]
+    #获取最新收盘价
+    price = kdj_data['close'][-1].item()
+    #获取最新MA30
+    ma30 = ma30_data[-1].item()
+    #计算买卖量系数并应用
+    trade_volume_factor = 1 + abs(price-ma30)*20/ma30
+    buy_usdt *= trade_volume_factor
+    sell_usdt *= trade_volume_factor
+    
+    print('coin_code:%s buy_usdt:%.2f sell_usdt:%.2f factor:%.4f sell_ratio:%.1f stock:%.2f limit:%.2f remain:%.2f '%(coin_code,round(buy_usdt,2),round(sell_usdt,2),round(trade_volume_factor,4),round(kdj_sell_ratio,1),round(stock,2),round(stock_limit,2),round(stock_remain,2)))
+    
+    #买入信号
+    if signal == 1:
+        #如果还有可用仓位则买入
+        if buy_usdt and stock_remain:
+            volume = max(min(buy_usdt/price,stock_remain),1.2)
+            return('buy',coin_id,price,volume)
+    #卖出信号
+    elif signal == -1:
+        if sell_usdt:
+            usable = None
+            for s in stocks:
+                if s['coin_id']==coin_id:
+                    usable = s['usable']
+            if usable != None:
+                price*=0.998
+                volume = min(sell_usdt/price,usable)
+                if volume * price > 1.2:
+                    return('sell',coin_id,price,volume)
+    return None

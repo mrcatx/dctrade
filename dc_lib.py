@@ -6,6 +6,8 @@ import pymysql
 import datetime
 import os
 import sys
+cur_path = os.path.dirname(os.path.abspath(__file__))
+
 db_host = '39.105.18.24'
 db_user = 'root'
 db_pwd = 'colorful2018'
@@ -14,7 +16,7 @@ db_db = 'dc_kdj'
 dc_base_url = 'https://a.dragonex.im'
 status_config = {}
 
-base_path = '/code/'
+base_path = '%s/'%cur_path
 conf_dir = 'data/'
 # conf_dir = '/Users/xun/Workspace/Source/python/dc/data'
 # conf_file = '%s/18011464336.json'%conf_dir

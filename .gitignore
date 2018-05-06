@@ -1,2 +1,4 @@
 /__pycache__
 data/*.json
+data/stock_cache/*
+data/trade_cache/*
