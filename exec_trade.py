@@ -62,15 +62,15 @@ else:
         kline = dc_lib.get_kline(coin_id, 15,100)        
         kdj_config = kdj.get_conf(coin_id)
         trades.extend(api.get_trades(coin_id))
-        trade_action = kdj.check_trade(coin_id,stocks,kline)
+        df = dc_lib.convert_candle_dataframe(kline)
+        trade_action = kdj.check_trade(coin_id,stocks,df)
         if not trade_action:
             continue
-        price = trade_action[2]
-        volume = trade_action[3]
+        price = trade_action.price
+        volume = trade_action.volume
         #买入信号
         if trade_action[0] == 'buy':
             #如果还有可用仓位则买入
-
             resp = api.buy(coin_id,price,volume)
             dc_lib.notify('Buy %s'%coin_code,'Price:%f Amount:%f%s'%(price,volume,get_err_msg(resp)))
         #卖出信号

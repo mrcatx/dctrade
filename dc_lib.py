@@ -86,6 +86,17 @@ def load_config():
         print('config[%s] not found',conf_file)
         status_config = {}
 
+def get_day_kline(coinId,count):
+    http_host = "https://a.dragonex.im"
+    url = '%s/market/kline/?coin_id=%s&direction=2&cycle=1day&callback=_jsonpeu8l43oe2lp&count=%d' % (
+        http_host, coinId, count)
+    r = str(requests.get(url).content, 'utf8')
+    idx_l = r.find("(")
+    idxR = r.find(")")
+    r = r[idx_l + 1:idxR]
+    j = json.loads(r)['data']
+    return j
+
 def get_kline(coinId, minutes, count):
     http_host = "https://a.dragonex.im"
     url = '%s/market/kline/?coin_id=%s&direction=2&cycle=%dmin&callback=_jsonpeu8l43oe2lp&count=%d' % (
@@ -97,9 +108,8 @@ def get_kline(coinId, minutes, count):
     j = json.loads(r)['data']
     return j
 
-def get_mean(kline,window):
-    df = convert_candle_dataframe(kline)
-    mean = df.close.rolling(window=30,center=False).mean()
+def get_mean(df,window):
+    mean = df.close.rolling(window=window,center=False).mean()
     return mean
 
 def get_account_config(account):
