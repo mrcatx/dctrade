@@ -1,146 +1,146 @@
 [
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "QTUM",
         "coin_id": "115",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "EOS",
         "coin_id": "113",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "RCN",
         "coin_id": "108",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "TNB",
         "coin_id": "107",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "ABT",
         "coin_id": "125",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "LRC",
         "coin_id": "109",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "KNC",
         "coin_id": "110",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "CMT",
         "coin_id": "118",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "MEET",
         "coin_id": "124",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "ETH",
         "coin_id": "103",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "BTC",
         "coin_id": "101",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.024,
         "buy_switch": true,
         "coin_code": "DT",
         "coin_id": "104",
-        "sell_ratio": 0.04,
+        "sell_ratio": 0.024,
         "sell_switch": true,
-        "stock_ratio": 0.2
+        "stock_ratio": 0.24
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "CHT",
         "coin_id": "119",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "NEO",
         "coin_id": "129",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "SAFE",
         "coin_id": "117",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     },
     {
-        "buy_ratio": 0.04,
+        "buy_ratio": 0.048,
         "buy_switch": true,
         "coin_code": "BCH",
         "coin_id": "111",
         "sell_ratio": 0.08,
         "sell_switch": true,
-        "stock_ratio": 0.14
+        "stock_ratio": 0.12
     }
 ]
