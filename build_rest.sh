@@ -1,12 +1,13 @@
-docker rm -f dcjrest
+docker stop dcrest
+docker rm -f dcrest
 docker run -d -p 5000:5000  \
             -v /dc/dctrade:/code  \
             -i -t  \
             -e "TZ=Asia/Chongqing"  \
-            --name dcjrest kdjrest:base  \
+            --name dcrest kdjrest:base  \
              /bin/bash
             # python rest/main.py
-docker exec dcjrest python /code/rest/web.py
+docker exec dcrest python /code/rest/web.py
 
 
 # docker rm -f kdjrest
