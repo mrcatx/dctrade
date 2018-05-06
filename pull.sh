@@ -1,1 +1,1 @@
-git pull https://github.com/mrcatx/dctrade
+git pull --rebase https://github.com/mrcatx/dctrade
