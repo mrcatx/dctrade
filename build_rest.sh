@@ -1,6 +1,6 @@
 docker rm -f kdjrest
 docker run -d -p 5000:5000  \
-            -v /dc/dckdj2:/code  \
+            -v /dc/dctrade:/code  \
             -i -t  \
             -e "TZ=Asia/Chongqing"  \
             --name kdjrest kdjrest:base  \
