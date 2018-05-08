@@ -109,7 +109,7 @@ def get_trade_config(coin_id,stocks,kdj_config):
     #获取当前仓位
     stock = api.get_coin_stock(coin_id,stocks)
     #设置KD卖出权重，剩余仓位大于0.15时为1，否则为0.7，增加卖出机会
-    kdj_sell_ratio = 1 if stock_limit and stock_remain/stock_limit>0.17 else 0.7
+    kdj_sell_ratio = 1 if stock_limit and stock_remain/stock_limit>0.17 else 0.85
 
     trade_config = namedtuple('config',['buy_usdt','sell_usdt','stock_limit','stock_remain','stock','kdj_sell_ratio'])
     return trade_config(buy_usdt,sell_usdt,stock_limit,stock_remain,stock,kdj_sell_ratio)
