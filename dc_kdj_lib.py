@@ -49,7 +49,7 @@ def get_kdj(coin_id, df,sell_ratio = 1):
     j_value.name = "J-Value"
     j_value.head()
 
-    k_signal = k_value.apply(lambda x: -1 if x > 85*sell_ratio else 1 if x < 20 else 0)
+    k_signal = k_value.apply(lambda x: -1 if x > 80*sell_ratio else 1 if x < 20 else 0)
     d_signal = d_value.apply(lambda x: -1 if x > 80*sell_ratio else 1 if x < 20 else 0)
 
     kd_signal = k_signal + d_signal
