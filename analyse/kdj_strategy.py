@@ -8,8 +8,21 @@ import dc_kdj_lib as kdj
 import coins
 import json
 from collections import namedtuple
+import matplotlib
+from matplotlib.font_manager import FontManager, FontProperties  
+import matplotlib.pylab as plt
 
-coin_set =  coins.g_coins#{ "104": "DT"}
+def getChineseFont():  
+    return FontProperties(fname='/System/Library/Fonts/PingFang.ttc')
+
+plt.rcParams['figure.figsize'] = (30, 9)
+plt.rcParams['figure.dpi'] = 80
+
+coin_set =  coins.g_coins
+coin_set =  { "104": "DT"}
+
+fig,ax_list = plt.subplots(nrows=len(coin_set), ncols=1)
+
 
 def request_klines():
     klines = {}
