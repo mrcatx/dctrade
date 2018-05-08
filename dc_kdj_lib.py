@@ -177,7 +177,7 @@ def check_trade(coin_id,stocks,df,ma30_data=None,kdj_data=None,trade_config=None
     sell_usdt *= trade_volume_factor
     
     if dl.account != 'mock':
-        print('coin_code:%s buy_usdt:%.2f sell_usdt:%.2f factor:%.4f sell_ratio:%.2f stock:%.2f limit:%.2f remain:%.2f price:%f'%(coin_code,round(buy_usdt,2),round(sell_usdt,2),round(trade_volume_factor,4),round(kdj_sell_ratio,1),round(stock,2),round(stock_limit,2),round(stock_remain,2),round(price,2)))
+        print('coin_code:%s buy_usdt:%.2f sell_usdt:%.2f factor:%.4f sell_ratio:%.2f stock:%.2f limit:%.2f remain:%.2f price:%f'%(coin_code,round(buy_usdt,2),round(sell_usdt,2),round(trade_volume_factor,4),round(kdj_sell_ratio,1),round(stock,2),round(stock_limit,2),round(stock_remain,2),price))
     
     trade = namedtuple('trade',['action','coin_id','price','volume'])
     #买入信号
