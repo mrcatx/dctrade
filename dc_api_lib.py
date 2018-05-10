@@ -30,7 +30,7 @@ def get_coin_stock(coin_id,stocks):
 def get_stocks():
     url = '/my/coin/list/?ori=1'
     content = dc.get(url,unicode_escape=False)
-    print(content)
+    # print(content)
     json_resp = json.loads(content)
     if json_resp['ok']:
         stocks = []
