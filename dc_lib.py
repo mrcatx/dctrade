@@ -67,10 +67,12 @@ def post(uri,data):
     r = requests.post(url,data=data,headers=headers).content.decode('unicode_escape')
     return r.replace('\r\n', '')
 
-def get(uri):
+def get(uri,unicode_escape=True):
     url = dc_base_url+uri
     headers = get_request_headers()
-    r = requests.get(url,headers=headers).content.decode('unicode_escape')
+    r = requests.get(url,headers=headers).content
+    if unicode_escape:
+        r = r.decode('unicode_escape')
     return r.replace('\r\n', '')
 
 
